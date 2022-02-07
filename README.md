@@ -1,4 +1,4 @@
-# weathercli
+# weatherCLI
 
 A simple CLI to view current and forecast weather data in the terminal.
 
@@ -36,6 +36,12 @@ Config files are saved at the following locations:
 - linux: ~/.local/share/weathercli/
 - macOS: ~/Library/Application Support/weathercli
 - windows: C:/Users/<USER>/AppData/Roaming/weathercli
+
+The location and contents of the config can be retrieved with the following command:
+
+```bash
+weather --show-config
+```
 
 ## Usage
 
