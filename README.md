@@ -57,14 +57,14 @@ For example, current weather in Warsaw, Poland can be displayed with the followi
 
 ```bash
 $ weather Warsaw
-       Warsaw       ☁️    Broken clouds     1.6°C (feels like -3.3°C)
+       Warsaw        ☁️    Broken clouds     ☁️  1.9°C (feels like -2.9°C)
 ```
 
 Alternatively, Imperial units can be displayed by using the `-i` flag:
 
 ```bash
 $ weather San Francisco -i
-   San Francisco    🔆      Clear sky       65.8°F (feels like 64.4°F)
+   San Francisco     ☁️      Few clouds      ☁️  66.2°F (feels like 64.8°F)
 ```
 
 ### Weather Forecasts
@@ -73,23 +73,23 @@ Forecasted weather conditions can be displayed by appending the `--forecast` fla
 
 ```bash
 $ weather Warsaw -f
-Warsaw 2022-02-08 01:00☁️    Broken clouds      1.6°C (feels like -3.3°C)
-Warsaw 2022-02-08 04:00☁️   Overcast clouds     1.8°C (feels like -2.7°C)
-Warsaw 2022-02-08 07:00☁️    Broken clouds      0.8°C (feels like -3.8°C)
+       Warsaw 2022-02-08 01:00        ☁️   Broken clouds    ☁️  1.9°C (feels like -2.8°C)
+       Warsaw 2022-02-08 04:00        ☁️   Broken clouds    ☁️  1.9°C (feels like -2.5°C)
+       Warsaw 2022-02-08 07:00        ☁️   Broken clouds    ☁️  1.2°C (feels like -3.3°C)
 ```
 
 By default, 3 forecast periods are displayed, but up to 40 (or 5 days) can be displayed by passing a number to the `-n NUMBER` argument.
 
 ```bash
 $ weather New York -i -f -n 8
-New York 2022-02-07 19:00💦      Light rain      35.9°F (feels like 31.2°F)
-New York 2022-02-07 22:00💦      Light rain      35.1°F (feels like 29.5°F)
-New York 2022-02-08 01:00💦      Light rain      34.2°F (feels like 28.3°F)
-New York 2022-02-08 04:00💦      Light rain      34.8°F (feels like 28.8°F)
-New York 2022-02-08 07:00☁️    Broken clouds     31.9°F (feels like 24.8°F)
-New York 2022-02-08 10:00🔆      Clear sky       36.8°F (feels like 30.1°F)
-New York 2022-02-08 13:00🔆      Clear sky       41.2°F (feels like 34.6°F)
-New York 2022-02-08 16:00☁️   Scattered clouds   39.5°F (feels like 31.9°F)
+      New York 2022-02-07 19:00       🌧️     Light rain     🌧️  36.8°F (feels like 32.3°F)
+      New York 2022-02-07 22:00       🌧️     Light rain     🌧️  35.9°F (feels like 30.5°F)
+      New York 2022-02-08 01:00       🌧️     Light rain     🌧️  35.1°F (feels like 29.3°F)
+      New York 2022-02-08 04:00       🌧️     Light rain     🌧️  34.8°F (feels like 28.8°F)
+      New York 2022-02-08 07:00       ☁️   Broken clouds    ☁️  31.9°F (feels like 24.8°F)
+      New York 2022-02-08 10:00       ☀️     Clear sky      ☀️  36.8°F (feels like 30.1°F)
+      New York 2022-02-08 13:00       ☀️     Clear sky      ☀️  41.2°F (feels like 34.6°F)
+      New York 2022-02-08 16:00       ☁️  Scattered clouds  ☁️  39.5°F (feels like 31.9°F)
 ```
 
 ## Uninstall

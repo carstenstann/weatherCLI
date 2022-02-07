@@ -206,11 +206,12 @@ def display_weather_info(weather_data: Dict, imperial: bool = False) -> None:
     weather_symbol, color = _select_weather_display_params(weather_id)
 
     style.change_color(color)
-    print(f"{weather_symbol}", end=" ")
+    print(f" {weather_symbol}", end=" ")
     print(
         f"{weather_description.capitalize():^{style.PADDING}}",
         end=" "
     )
+    print(f"{weather_symbol} ", end=" ")
     style.change_color(style.RESET)
 
     units = 'F' if imperial else 'C'
@@ -230,21 +231,22 @@ def display_forecast_info(weather_data: Dict, imperial: bool = False) -> None:
         local = (time + timedelta(seconds=timezone_shift)).strftime('%Y-%m-%d %H:%M')
 
         style.change_color(style.REVERSE)
-        print(f"{city+' '+local:^{style.PADDING}}", end="")
+        print(f"{city+' '+local:^{style.PADDING+17}}", end="")
         style.change_color(style.RESET)
         
         weather_symbol, color = _select_weather_display_params(weather_id)
 
         style.change_color(color)
-        print(f"{weather_symbol}", end=" ")
+        print(f" {weather_symbol}", end="")
         print(
             f"{weather_description.capitalize():^{style.PADDING}}",
-            end=" "
+            end=""
         )
+        print(f"{weather_symbol} ", end=" ")
         style.change_color(style.RESET)
 
         units = 'F' if imperial else 'C'
-        print(f"{temperature:>4.1f}°{units} (feels like {temperature_feel:>4.1f}°{units})")
+        print(f"{temperature:.1f}°{units} (feels like {temperature_feel:.1f}°{units})")
 
 
 def _select_weather_display_params(weather_id: int) -> Tuple:
@@ -253,13 +255,13 @@ def _select_weather_display_params(weather_id: int) -> Tuple:
     elif weather_id in DRIZZLE:
         display_params = ("💧", style.CYAN)
     elif weather_id in RAIN:
-        display_params = ("💦", style.BLUE)
+        display_params = ("🌧️", style.BLUE)
     elif weather_id in SNOW:
         display_params = ("⛄️", style.WHITE)
     elif weather_id in ATMOSPHERE:
         display_params = ("🌀", style.BLUE)
     elif weather_id in CLEAR:
-        display_params = ("🔆", style.YELLOW)
+        display_params = ("☀️", style.YELLOW)
     elif weather_id in CLOUDY:
         display_params = ("☁️", style.WHITE)
     else:  # In case the API adds new weather codes
