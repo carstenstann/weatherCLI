@@ -65,6 +65,26 @@ def get_config():
     return config
 
 
+def get_api_key() -> str:
+    """Fetch the API key from configuration file."""
+    try:
+        config = get_config()
+    except FileNotFoundError:
+        print('No config file found.')
+        print('Run weather --api-key {API KEY} to set an API key.')
+        print('Generate an API key at https://openweathermap.org/')
+        sys.exit(1)
+    
+    try:
+        api_key = config['openweather']['api_key']
+    except KeyError:
+        print('API key not found.')
+        print('Run weather --api-key {API KEY} to set an API key.')
+        print('Generate an API key at https://openweathermap.org/')
+        sys.exit(1)
+    return api_key
+
+
 def set_api_key(key):
     config_file_path = init_config_file()
 
