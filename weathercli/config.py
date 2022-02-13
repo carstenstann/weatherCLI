@@ -5,7 +5,7 @@ import sys
 from weathercli import __app_name__
 
 
-CONFIG_FILENAME = 'config.ini'
+CONFIG_FILENAME = "config.ini"
 
 
 def get_datadir() -> pathlib.Path:
@@ -45,7 +45,7 @@ def init_config_file():
     except OSError:
         print("config directory error")
         sys.exit(1)
-    
+
     try:
         config_file_path.touch(exist_ok=True)
     except OSError:
@@ -59,7 +59,7 @@ def get_config():
     config_file_path = get_config_path()
     if not config_file_path.is_file():
         raise FileNotFoundError
-    
+
     config = configparser.ConfigParser()
     config.read(config_file_path)
     return config
@@ -70,17 +70,17 @@ def get_api_key() -> str:
     try:
         config = get_config()
     except FileNotFoundError:
-        print('No config file found.')
-        print('Run weather --api-key {API KEY} to set an API key.')
-        print('Generate an API key at https://openweathermap.org/')
+        print("No config file found.")
+        print("Run weather --api-key {API KEY} to set an API key.")
+        print("Generate an API key at https://openweathermap.org/")
         sys.exit(1)
-    
+
     try:
-        api_key = config['openweather']['api_key']
+        api_key = config["openweather"]["api_key"]
     except KeyError:
-        print('API key not found.')
-        print('Run weather --api-key {API KEY} to set an API key.')
-        print('Generate an API key at https://openweathermap.org/')
+        print("API key not found.")
+        print("Run weather --api-key {API KEY} to set an API key.")
+        print("Generate an API key at https://openweathermap.org/")
         sys.exit(1)
     return api_key
 
@@ -90,10 +90,10 @@ def set_api_key(key):
 
     config = configparser.ConfigParser()
     config.read(config_file_path)
-    config['openweather'] = {'api_key': key}
+    config["openweather"] = {"api_key": key}
 
     try:
         with config_file_path.open("w") as configfile:
             config.write(configfile)
     except OSError:
-            print("config file error")
+        print("config file error")

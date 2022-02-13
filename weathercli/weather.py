@@ -6,18 +6,18 @@ from urllib import error, parse, request
 from weathercli.config import get_api_key
 
 
-BASE_WEATHER_API_URL  = 'http://api.openweathermap.org/data/2.5/weather'
-BASE_FORECAST_API_URL = 'http://api.openweathermap.org/data/2.5/forecast'
+BASE_WEATHER_API_URL = "http://api.openweathermap.org/data/2.5/weather"
+BASE_FORECAST_API_URL = "http://api.openweathermap.org/data/2.5/forecast"
 
 # Weather Condition Codes
 # https://openweathermap.org/weather-conditions#Weather-Condition-Codes-2
 THUNDERSTORM = range(200, 300)
-DRIZZLE      = range(300, 400)
-RAIN         = range(500, 600)
-SNOW         = range(600, 700)
-ATMOSPHERE   = range(700, 800)
-CLEAR        = range(800, 801)
-CLOUDY       = range(801, 900)
+DRIZZLE = range(300, 400)
+RAIN = range(500, 600)
+SNOW = range(600, 700)
+ATMOSPHERE = range(700, 800)
+CLEAR = range(800, 801)
+CLOUDY = range(801, 900)
 
 
 def build_weather_query(city_input: List[str], imperial: bool = False) -> str:
@@ -41,7 +41,9 @@ def build_weather_query(city_input: List[str], imperial: bool = False) -> str:
     return url
 
 
-def build_historical_query(city_input: List[str], imperial: bool = False, cnt: int = 3) -> str:
+def build_historical_query(
+    city_input: List[str], imperial: bool = False, cnt: int = 3
+) -> str:
     api_key = get_api_key()
     city_name = " ".join(city_input)
     url_encoded_city_name = parse.quote_plus(city_name)
@@ -65,16 +67,16 @@ def get_weather_data(query_url: str) -> Dict:
     try:
         response = request.urlopen(query_url)
     except error.HTTPError as http_error:
-        if http_error.code == 401: # 401 - Unauthorized
+        if http_error.code == 401:  # 401 - Unauthorized
             sys.exit("Access denied. Check your API key.")
-        elif http_error.code == 404: # 404 - Not Found
+        elif http_error.code == 404:  # 404 - Not Found
             sys.exit("Can't find weather data for this city.")
         else:
             sys.exit(f"Something went wrong...({http_error.code})")
-    
+
     try:
         data = response.read()
     except json.JSONDecodeError:
         sys.exit("Couldn't read the server response.")
-    
+
     return json.loads(data)
